@@ -4,8 +4,36 @@ const bodyParser = require('body-parser')
 const app = express()
 const port = 3000
 
-const pool = require('./dbcon')
+  const pool = require('./dbcon')
+const TodoController = require('./controllers/todoController')
 app.use(bodyParser.json())
+
+const todoController = new TodoController()
+
+// Controllers open
+//get Using controllers
+app.get('/controlgetall', todoController.getAll)
+
+
+//insert Using controllers
+app.post('/controlinsert', todoController.createTask)
+
+
+//Delete top most data Using controllers
+app.delete('/controltopdelete', todoController.deleteTask)
+
+
+//update data with ID Using controllers
+app.post('/controlupdate', todoController.updateTask)
+
+// Controllers close
+
+
+
+
+
+
+
 
 
 //select with filter
@@ -19,6 +47,8 @@ app.get('/withfilter', async (req, response) => {
     
     response.json({info: ress.rows})
 })
+
+
 
 //Get single task
 app.get('/getone', async (req, response) => {
