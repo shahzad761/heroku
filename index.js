@@ -117,6 +117,13 @@ app.delete('/delete', async (req, response) => {
 })
 
 
+app.get('/helloworld', async (req, response) => {
+  
+  response.json({ "info":"Hello World" })
+})
+
+
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
